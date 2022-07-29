@@ -84,12 +84,14 @@ router.post('/login', loginValidation, async (req, res) => {
     })
     } else {
       console.log('invalid credentials line 85')
-      return res.status(401).json({ message: 'Invalid credentials' })
+      res.status(401).json({ message: 'Invalid credentials' })
+      return 
     }
 
 
   } catch(err) {
-    return res.send(err)
+    res.send(err)
+    return 
   } 
 });
 
