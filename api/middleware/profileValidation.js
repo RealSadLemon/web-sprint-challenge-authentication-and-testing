@@ -6,8 +6,10 @@ module.exports = async (req, res, next) => {
       the response body should include a string exactly as follows: "username and password required".
     */
     const {username, password} = req.body;
-    const user = await authModel.findBy({username})
-    console.log(user[0]);
+    let user;
+    if(username) {
+        user = await authModel.findBy({username})
+    }
     if(typeof username !== 'string' || typeof password !== 'string' || username.trim() === '' || password.trim() === ''){ 
         res.status(400).json({ message: "Username and password required" })
         return;
